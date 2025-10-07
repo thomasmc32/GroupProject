@@ -1,3 +1,4 @@
+<!HMTL by thomas>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,20 +9,19 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body class="bg-light">
-<!-- HTML by Tom -->
 <div class="container mt-5">
     <h2 class="text-center mb-4">Shopper Management</h2>
-    <form id="shopperForm" class="card p-4 shadow-sm w-50 mx-auto">
+    <form id="shopperForm" class="card p-4 shadow-sm w-50 mx-auto" novalidate>
         <div class="mb-3">
             <label>Email</label>
             <input type="email" id="email" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label>Name</label>
+            <label>Full Name</label>
             <input type="text" id="name" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label>Contact Phone</label>
+            <label>Phone Number</label>
             <input type="tel" id="phone" class="form-control">
         </div>
         <div class="mb-3">
@@ -29,29 +29,16 @@
             <input type="number" id="age" class="form-control" required>
         </div>
         <div class="mb-3">
-            <label>Address</label>
+            <label>Address (Street, City, State, ZipCode)</label>
             <input type="text" id="address" class="form-control" required>
         </div>
         <button type="submit" class="btn btn-primary w-100">Sign Up</button>
     </form>
 
-    <h4 class="mt-4">JSON Shopper Document</h4>
+    <h4 class="mt-4"></h4>
     <pre id="jsonOutput" class="bg-white p-3 border rounded"></pre>
 </div>
 
-<!-- JS by teammate -->
-<script>
-    document.getElementById("shopperForm").addEventListener("submit", function(event) {
-        event.preventDefault();
-        const shopperData = {
-            email: document.getElementById("email").value,
-            name: document.getElementById("name").value,
-            "contact-phone": document.getElementById("phone").value,
-            age: document.getElementById("age").value,
-            address: document.getElementById("address").value
-        };
-        document.getElementById("jsonOutput").textContent = JSON.stringify(shopperData, null, 2);
-    });
-</script>
+    <script src="script.js"></script>
 </body>
 </html>

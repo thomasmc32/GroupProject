@@ -1,10 +1,7 @@
-/* CSS by Tom */
-/* Red and Blue Theme for Shopper Management Page */
-
 body {
-    background-color: #f0f4ff; /* soft blue background */
+    background-color: #f0f4ff;
     font-family: Arial, sans-serif;
-    color: #002b5b; /* navy blue text */
+    color: #002b5b;
     margin: 0;
     padding: 0;
 }
@@ -44,8 +41,9 @@ label {
 }
 
 .btn:hover {
-    background-color: #ff0000; /* turns red when hovered */
+    background-color: #ff0000;
     transform: scale(1.05);
+    animation: shake 0.5s ease;
 }
 
 pre {
@@ -56,8 +54,13 @@ pre {
     padding: 10px;
 }
 
-/* Highlight all clickable elements (like buttons or links) on hover */
 button:hover, a:hover {
     cursor: pointer;
     box-shadow: 0 0 10px #ff0000;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  20%, 60% { transform: translateX(-5px); }
+  40%, 80% { transform: translateX(5px); }
 }
