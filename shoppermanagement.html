@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopper Management</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="bg-light">
+<!-- HTML by Tom -->
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Shopper Management</h2>
+    <form id="shopperForm" class="card p-4 shadow-sm w-50 mx-auto">
+        <div class="mb-3">
+            <label>Email</label>
+            <input type="email" id="email" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Name</label>
+            <input type="text" id="name" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Contact Phone</label>
+            <input type="tel" id="phone" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label>Age</label>
+            <input type="number" id="age" class="form-control" required>
+        </div>
+        <div class="mb-3">
+            <label>Address</label>
+            <input type="text" id="address" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary w-100">Sign Up</button>
+    </form>
+
+    <h4 class="mt-4">JSON Shopper Document</h4>
+    <pre id="jsonOutput" class="bg-white p-3 border rounded"></pre>
+</div>
+
+<!-- JS by teammate -->
+<script>
+    document.getElementById("shopperForm").addEventListener("submit", function(event) {
+        event.preventDefault();
+        const shopperData = {
+            email: document.getElementById("email").value,
+            name: document.getElementById("name").value,
+            "contact-phone": document.getElementById("phone").value,
+            age: document.getElementById("age").value,
+            address: document.getElementById("address").value
+        };
+        document.getElementById("jsonOutput").textContent = JSON.stringify(shopperData, null, 2);
+    });
+</script>
+</body>
+</html>
