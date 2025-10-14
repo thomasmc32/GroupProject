@@ -1,4 +1,4 @@
-
+//commited by algassim bah//
 const form = document.getElementById("shopperForm");
 const email = document.getElementById("email");
 const nameInput = document.getElementById("name");
