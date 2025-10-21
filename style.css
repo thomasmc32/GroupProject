@@ -45,8 +45,8 @@ label {
 
 .btn:hover {
     background-color: #008000;
-    transform: scale(1.05);
-    animation: shake 0.5s ease;
+    transform: scale(1.03);
+    animation: shake 0.0s ease;
 }
 
 pre {
