@@ -48,6 +48,8 @@ const productPrice = document.getElementById("productPrice");
 const productWeight = document.getElementById("productWeight");
 const productOutput = document.getElementById("productOutput");
 
+let productList = [];
+
 function validateProduct() {
     let ok = true;
     [productId, productDesc, productCategory, productUOM, productPrice].forEach((el) => el.classList.remove("is-invalid"));
@@ -72,4 +74,96 @@ productForm.addEventListener("submit", function (event) {
         productWeight: productWeight.value.trim() || "N/A",
     };
     productOutput.textContent = JSON.stringify(productData, null, 2);
+
+    productList.push(productData);
+});
+
+// ---- Shopping Cart ----
+let cart = [];
+
+const searchInput = document.getElementById("searchProduct");
+const searchBtn = document.getElementById("searchBtn");
+const searchResults = document.getElementById("searchResults");
+const cartTable = document.getElementById("cartTable");
+const checkoutBtn = document.getElementById("checkoutBtn");
+const cartOutput = document.getElementById("cartOutput");
+
+searchBtn.addEventListener("click", () => {
+    const query = searchInput.value.trim().toLowerCase();
+    const results = productList.filter(p => p.name.toLowerCase().includes(query));
+    renderSearchResults(results);
+});
+
+function renderSearchResults(results) {
+    searchResults.innerHTML = "";
+    results.forEach(item => {
+        const row = document.createElement("tr");
+        row.innerHTML = `
+            <td>${item.id}</td>
+            <td>${item.name}</td>
+            <td>${item.category}</td>
+            <td>$${item.price.toFixed(2)}</td>
+            <td><button class="btn btn-sm btn-success addBtn" data-id="${item.id}">Add</button></td>
+        `;
+        searchResults.appendChild(row);
+    });
+
+    document.querySelectorAll(".addBtn").forEach(btn => {
+        btn.addEventListener("click", () => addToCart(btn.dataset.id));
+    });
+}
+
+function addToCart(id) {
+    const product = productlist.find(p => p.id === id);
+    if (!product) return;
+
+    const existing = cart.find(c => c.id === id);
+    if (existing) existing.quantity--;
+    else cart.push({ ...product, quantity: 1 });
+
+    renderCart();
+}
+
+function renderCart() {
+    cartTable.innerHTML = "";
+    cart.forEach(item => {
+        const row = document.createElement("tr");
+        const total = item.quantity * item.price;
+        row.innerHTML = `
+            <td>${item.id}</td>
+            <td>${item.name}</td>
+            <td><input type="number" min="1" class="form-control form-control-sm qtyInput" data-id="${item.id}" value="${item.quantity}"></td>
+            <td>$${item.price.toFixed(2)}</td>
+            <td>$${total.toFixed(2)}</td>
+            <td><button class="btn btn-sm btn-danger removeBtn" data-id="${item.id}">X</button></td>
+        `;
+        cartTable.appendChild(row);
+    });
+
+    document.querySelectorAll(".qtyInput").forEach(input => {
+        input.addEventListener("input", () => {
+            const item = cart.find(c => c.id === input.dataset.id);
+            item.quantity = parseInt(input.value) || 1;
+            renderCart();
+        });
+    });
+
+    document.querySelectorAll(".removeBtn").forEach(btn => {
+        btn.addEventListener("click", () => {
+            cart = cart.filter(c => c.id !== btn.dataset.id);
+            renderCart();
+        });
+    });
+}
+
+checkoutBtn.addEventListener("click", () => {
+    const cartDoc = cart.map(i => ({
+        id: i.id,
+        name: i.name,
+        category: i.category,
+        quantity: i.quantity,
+        price: i.price,
+        total: (i.price * i.quantity).toFixed(2)
+    }));
+    cartOutput.textContent = JSON.stringify(cartDoc, null, 2);
 });
