@@ -1,0 +1,108 @@
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"d5c82d9f-fae5-43a1-9a87-e0ed605d1dac\" name=\"Changes\" comment=\"Added work done by me in HTML file\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/index.html\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/index.html\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/script.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/script.js\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/style.css\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/style.css\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;thomasmc32&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/thomasmc32/GroupProject.git&quot;,\n    &quot;accountId&quot;: &quot;2b30ec3a-f472-490b-a726-a3d81ee9569e&quot;\n  }\n}</component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 3\n}</component>\n  <component name=\"ProjectId\" id=\"33kzu9A7GRvLuDV2s4tkMjpQS2O\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\">{\n  &quot;keyToString&quot;: {\n    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Debug&quot;,\n    &quot;JavaScript Debug.shoppermanagement.html.executor&quot;: &quot;Run&quot;,\n    &quot;Node.js.script.js.executor&quot;: &quot;Run&quot;,\n    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,\n    &quot;git-widget-placeholder&quot;: &quot;main&quot;,\n    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,\n    &quot;last_opened_file_path&quot;: &quot;/Users/thomasmcconnell/WebstormProjects/GroupProject&quot;,\n    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,\n    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,\n    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,\n    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,\n    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,\n    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;\n  }\n}</component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$\" />\n    </key>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-WS-252.25557.126\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"d5c82d9f-fae5-43a1-9a87-e0ed605d1dac\" name=\"Changes\" comment=\"\" />\n      <created>1759876077569</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1759876077569</updated>\n      <workItem from=\"1759876078698\" duration=\"1062000\" />\n      <workItem from=\"1760632906785\" duration=\"875000\" />\n      <workItem from=\"1761085634590\" duration=\"137000\" />\n      <workItem from=\"1761433950266\" duration=\"8473000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"started assigment\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759876157940</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759876157940</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"&#10;.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1760483328577</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1760483328577</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Updated CSS elements, added categories of products, edited validateProduct fucntion\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1761073209618</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1761073209618</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"Updated CSS elements, added categories of products, edited validateProduct function\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1761075031852</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1761075031852</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"Added work done by me in HTML file\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1761075279118</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1761075279118</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"6\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"started assigment\" />\n    <MESSAGE value=\"&#10;.\" />\n    <MESSAGE value=\"Updated CSS elements, added categories of products, edited validateProduct fucntion\" />\n    <MESSAGE value=\"Updated CSS elements, added categories of products, edited validateProduct function\" />\n    <MESSAGE value=\"Added work done by me in HTML file\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Added work done by me in HTML file\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision a0c60142651a5278a238ed838ba7cc6fbeb26e35)
++++ b/.idea/workspace.xml	(date 1761657632428)
+@@ -4,11 +4,8 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d5c82d9f-fae5-43a1-9a87-e0ed605d1dac" name="Changes" comment="Added work done by me in HTML file">
++    <list default="true" id="d5c82d9f-fae5-43a1-9a87-e0ed605d1dac" name="Changes" comment=".">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+     <option name="HIGHLIGHT_CONFLICTS" value="true" />
+@@ -41,23 +38,23 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent">{
+-  &quot;keyToString&quot;: {
+-    &quot;JavaScript Debug.index.html.executor&quot;: &quot;Debug&quot;,
+-    &quot;JavaScript Debug.shoppermanagement.html.executor&quot;: &quot;Run&quot;,
+-    &quot;Node.js.script.js.executor&quot;: &quot;Run&quot;,
+-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+-    &quot;junie.onboarding.icon.badge.shown&quot;: &quot;true&quot;,
+-    &quot;last_opened_file_path&quot;: &quot;/Users/thomasmcconnell/WebstormProjects/GroupProject&quot;,
+-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+-    &quot;to.speed.mode.migration.done&quot;: &quot;true&quot;,
+-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
++  <component name="PropertiesComponent"><![CDATA[{
++  "keyToString": {
++    "JavaScript Debug.index.html.executor": "Run",
++    "JavaScript Debug.shoppermanagement.html.executor": "Run",
++    "Node.js.script.js.executor": "Run",
++    "RunOnceActivity.git.unshallow": "true",
++    "git-widget-placeholder": "main",
++    "junie.onboarding.icon.badge.shown": "true",
++    "last_opened_file_path": "/Users/thomasmcconnell/WebstormProjects/GroupProject",
++    "node.js.detected.package.eslint": "true",
++    "node.js.detected.package.tslint": "true",
++    "node.js.selected.package.eslint": "(autodetect)",
++    "node.js.selected.package.tslint": "(autodetect)",
++    "to.speed.mode.migration.done": "true",
++    "vue.rearranger.settings.migration": "true"
+   }
+-}</component>
++}]]></component>
+   <component name="RecentsManager">
+     <key name="CopyFile.RECENT_KEYS">
+       <recent name="$PROJECT_DIR$" />
+@@ -66,7 +63,7 @@
+   <component name="SharedIndexes">
+     <attachedChunks>
+       <set>
+-        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-WS-252.25557.126" />
++        <option value="bundled-js-predefined-d6986cc7102b-e03c56caf84a-JavaScript-WS-252.23892.411" />
+       </set>
+     </attachedChunks>
+   </component>
+@@ -79,8 +76,6 @@
+       <updated>1759876077569</updated>
+       <workItem from="1759876078698" duration="1062000" />
+       <workItem from="1760632906785" duration="875000" />
+-      <workItem from="1761085634590" duration="137000" />
+-      <workItem from="1761433950266" duration="8473000" />
+     </task>
+     <task id="LOCAL-00001" summary="started assigment">
+       <option name="closed" value="true" />
+@@ -114,15 +109,7 @@
+       <option name="project" value="LOCAL" />
+       <updated>1761075031852</updated>
+     </task>
+-    <task id="LOCAL-00005" summary="Added work done by me in HTML file">
+-      <option name="closed" value="true" />
+-      <created>1761075279118</created>
+-      <option name="number" value="00005" />
+-      <option name="presentableId" value="LOCAL-00005" />
+-      <option name="project" value="LOCAL" />
+-      <updated>1761075279118</updated>
+-    </task>
+-    <option name="localTasksCounter" value="6" />
++    <option name="localTasksCounter" value="5" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -144,7 +131,6 @@
+     <MESSAGE value="&#10;." />
+     <MESSAGE value="Updated CSS elements, added categories of products, edited validateProduct fucntion" />
+     <MESSAGE value="Updated CSS elements, added categories of products, edited validateProduct function" />
+-    <MESSAGE value="Added work done by me in HTML file" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Added work done by me in HTML file" />
++    <option name="LAST_COMMIT_MESSAGE" value="Updated CSS elements, added categories of products, edited validateProduct function" />
+   </component>
+ </project>
+\ No newline at end of file
