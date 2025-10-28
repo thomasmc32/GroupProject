@@ -90,7 +90,7 @@ const cartOutput = document.getElementById("cartOutput");
 
 searchBtn.addEventListener("click", () => {
     const query = searchInput.value.trim().toLowerCase();
-    const results = productList.filter(p => p.name.toLowerCase().includes(query));
+    const results = productList.filter(p => p.productDesc.toLowerCase().includes(query));
     renderSearchResults(results);
 });
 
@@ -98,13 +98,14 @@ function renderSearchResults(results) {
     searchResults.innerHTML = "";
     results.forEach(item => {
         const row = document.createElement("tr");
-        row.innerHTML = `
-            <td>${item.id}</td>
-            <td>${item.name}</td>
-            <td>${item.category}</td>
-            <td>$${item.price.toFixed(2)}</td>
-            <td><button class="btn btn-sm btn-success addBtn" data-id="${item.id}">Add</button></td>
-        `;
+row.innerHTML = `
+    <td>${item.productId}</td>
+    <td>${item.productDesc}</td>
+    <td>${item.productCategory}</td>
+    <td>$${parseFloat(item.productPrice).toFixed(2)}</td>
+    <td><button class="btn btn-sm btn-success addBtn" data-id="${item.productId}">Add</button></td>
+`;
+
         searchResults.appendChild(row);
     });
 
@@ -114,11 +115,11 @@ function renderSearchResults(results) {
 }
 
 function addToCart(id) {
-    const product = productlist.find(p => p.id === id);
+    const product = productList.find(p => p.productId === id);
     if (!product) return;
 
-    const existing = cart.find(c => c.id === id);
-    if (existing) existing.quantity--;
+    const existing = cart.find(c => c.productId === id);
+    if (existing) existing.quantity++;
     else cart.push({ ...product, quantity: 1 });
 
     renderCart();
@@ -128,21 +129,21 @@ function renderCart() {
     cartTable.innerHTML = "";
     cart.forEach(item => {
         const row = document.createElement("tr");
-        const total = item.quantity * item.price;
+        const total = parseFloat(item.productPrice) * item.quantity;
         row.innerHTML = `
-            <td>${item.id}</td>
-            <td>${item.name}</td>
-            <td><input type="number" min="1" class="form-control form-control-sm qtyInput" data-id="${item.id}" value="${item.quantity}"></td>
-            <td>$${item.price.toFixed(2)}</td>
+            <td>${item.productId}</td>
+            <td>${item.productDesc}</td>
+            <td><input type="number" min="1" class="form-control form-control-sm qtyInput" data-id="${item.productId}" value="${item.quantity}"></td>
+            <td>$${parseFloat(item.productPrice).toFixed(2)}</td>
             <td>$${total.toFixed(2)}</td>
-            <td><button class="btn btn-sm btn-danger removeBtn" data-id="${item.id}">X</button></td>
+            <td><button class="btn btn-sm btn-danger removeBtn" data-id="${item.productId}">X</button></td>
         `;
         cartTable.appendChild(row);
     });
 
     document.querySelectorAll(".qtyInput").forEach(input => {
         input.addEventListener("input", () => {
-            const item = cart.find(c => c.id === input.dataset.id);
+            const item = cart.find(c => c.productId === input.dataset.id);
             item.quantity = parseInt(input.value) || 1;
             renderCart();
         });
@@ -150,20 +151,22 @@ function renderCart() {
 
     document.querySelectorAll(".removeBtn").forEach(btn => {
         btn.addEventListener("click", () => {
-            cart = cart.filter(c => c.id !== btn.dataset.id);
+            cart = cart.filter(c => c.productId !== btn.dataset.id);
             renderCart();
         });
     });
 }
 
+
+}
+
 checkoutBtn.addEventListener("click", () => {
     const cartDoc = cart.map(i => ({
-        id: i.id,
-        name: i.name,
-        category: i.category,
-        quantity: i.quantity,
-        price: i.price,
-        total: (i.price * i.quantity).toFixed(2)
+        id: i.productId,
+        name: i.productDesc,
+        category: i.productCategory,
+        price: i.productPrice,
+        total: (parseFloat(i.productPrice) * i.quantity).toFixed(2)
     }));
     cartOutput.textContent = JSON.stringify(cartDoc, null, 2);
 });
