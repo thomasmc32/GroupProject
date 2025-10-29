@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5c82d9f-fae5-43a1-9a87-e0ed605d1dac" name="Changes" comment="Added work done by me in HTML file">
+    <list default="true" id="d5c82d9f-fae5-43a1-9a87-e0ed605d1dac" name="Changes" comment="Created shopping cart page, outlined page behaviors in js file.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +79,9 @@
       <workItem from="1759876078698" duration="1062000" />
       <workItem from="1760632906785" duration="875000" />
       <workItem from="1761085634590" duration="137000" />
-      <workItem from="1761433950266" duration="8473000" />
+      <workItem from="1761433950266" duration="8796000" />
+      <workItem from="1761692163661" duration="63000" />
+      <workItem from="1761706124977" duration="2504000" />
     </task>
     <task id="LOCAL-00001" summary="started assigment">
       <option name="closed" value="true" />
@@ -122,7 +123,15 @@
       <option name="project" value="LOCAL" />
       <updated>1761075279118</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Created shopping cart page, outlined page behaviors in js file.">
+      <option name="closed" value="true" />
+      <created>1761443510643</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1761443510643</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -145,6 +154,7 @@
     <MESSAGE value="Updated CSS elements, added categories of products, edited validateProduct fucntion" />
     <MESSAGE value="Updated CSS elements, added categories of products, edited validateProduct function" />
     <MESSAGE value="Added work done by me in HTML file" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added work done by me in HTML file" />
+    <MESSAGE value="Created shopping cart page, outlined page behaviors in js file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Created shopping cart page, outlined page behaviors in js file." />
   </component>
 </project>
