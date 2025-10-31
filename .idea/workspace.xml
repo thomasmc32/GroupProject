@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5c82d9f-fae5-43a1-9a87-e0ed605d1dac" name="Changes" comment="Created shopping cart page, outlined page behaviors in js file.">
+    <list default="true" id="d5c82d9f-fae5-43a1-9a87-e0ed605d1dac" name="Changes" comment="reverted back 1 commit">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
     </list>
@@ -22,12 +22,12 @@
     &quot;assignee&quot;: &quot;thomasmc32&quot;
   }
 }</component>
-  <component name="GithubPullRequestsUISettings">{
-  &quot;selectedUrlAndAccountId&quot;: {
-    &quot;url&quot;: &quot;https://github.com/thomasmc32/GroupProject.git&quot;,
-    &quot;accountId&quot;: &quot;9c79f2a7-fddf-4a21-9de1-05410627da9a&quot;
+  <component name="GithubPullRequestsUISettings"><![CDATA[{
+  "selectedUrlAndAccountId": {
+    "url": "https://github.com/thomasmc32/GroupProject",
+    "accountId": "1c12bdd8-4214-4861-ac42-41cc760bfa85"
   }
-}</component>
+}]]></component>
   <component name="ProblemsViewState">
     <option name="selectedTabId" value="CurrentFile" />
   </component>
@@ -46,6 +46,7 @@
     "Node.js.script.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
+    "com.intellij.ml.llm.matterhorn.ej.ui.settings.DefaultModelSelectionForGA.v1": "true",
     "git-widget-placeholder": "main",
     "junie.onboarding.icon.badge.shown": "true",
     "kotlin-language-version-configured": "true",
@@ -66,7 +67,7 @@
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103" />
+        <option value="bundled-js-predefined-d6986cc7102b-3aa1da707db6-JavaScript-WS-252.26830.93" />
       </set>
     </attachedChunks>
   </component>
@@ -80,9 +81,8 @@
       <workItem from="1759876078698" duration="1062000" />
       <workItem from="1760632906785" duration="875000" />
       <workItem from="1761085634590" duration="137000" />
-      <workItem from="1761433950266" duration="8796000" />
-      <workItem from="1761692163661" duration="63000" />
-      <workItem from="1761706124977" duration="2504000" />
+      <workItem from="1761433950266" duration="8473000" />
+      <workItem from="1761718143219" duration="518000" />
     </task>
     <task id="LOCAL-00001" summary="started assigment">
       <option name="closed" value="true" />
@@ -124,15 +124,7 @@
       <option name="project" value="LOCAL" />
       <updated>1761075279118</updated>
     </task>
-    <task id="LOCAL-00006" summary="Created shopping cart page, outlined page behaviors in js file.">
-      <option name="closed" value="true" />
-      <created>1761443510643</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1761443510643</updated>
-    </task>
-    <option name="localTasksCounter" value="7" />
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -155,7 +147,6 @@
     <MESSAGE value="Updated CSS elements, added categories of products, edited validateProduct fucntion" />
     <MESSAGE value="Updated CSS elements, added categories of products, edited validateProduct function" />
     <MESSAGE value="Added work done by me in HTML file" />
-    <MESSAGE value="Created shopping cart page, outlined page behaviors in js file." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created shopping cart page, outlined page behaviors in js file." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added work done by me in HTML file" />
   </component>
 </project>

@@ -1,0 +1,158 @@
+Index: script.js
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>// Committed by Algassim Bah\n\n// ---- SHOPPER MANAGEMENT ----\nconst shopperForm = document.getElementById(\"shopperForm\");\nconst email = document.getElementById(\"email\");\nconst nameInput = document.getElementById(\"name\");\nconst phone = document.getElementById(\"phone\");\nconst age = document.getElementById(\"age\");\nconst address = document.getElementById(\"address\");\nconst shopperOutput = document.getElementById(\"shopperOutput\");\n\nfunction validateShopper() {\n    let ok = true;\n    [email, nameInput, phone, age, address].forEach((el) => el.classList.remove(\"is-invalid\"));\n\n    if (!email.value.trim() || !email.checkValidity()) ok = false;\n    if (!nameInput.value.trim() || nameInput.value.trim().length < 2) ok = false;\n    const ageNum = Number(age.value);\n    if (!age.value || Number.isNaN(ageNum) || ageNum < 1 || ageNum > 120) ok = false;\n    if (!address.value.trim() || address.value.trim().length < 5) ok = false;\n\n    const digits = phone.value.replace(/\\D/g, \"\");\n    if (phone.value.trim() && digits.length !== 10) ok = false;\n    return ok;\n}\n\nshopperForm.addEventListener(\"submit\", function (event) {\n    event.preventDefault();\n    if (!validateShopper()) return alert(\"Please fill out all required shopper fields correctly.\");\n\n    const shopperData = {\n        email: email.value.trim(),\n        name: nameInput.value.trim(),\n        \"contact-phone\": phone.value.trim(),\n        age: age.value.trim(),\n        address: address.value.trim(),\n    };\n    shopperOutput.textContent = JSON.stringify(shopperData, null, 2);\n});\n\n// ---- PRODUCT MANAGEMENT ----\nconst productForm = document.getElementById(\"productForm\");\nconst productId = document.getElementById(\"productId\");\nconst productDesc = document.getElementById(\"productDesc\");\nconst productCategory = document.getElementById(\"productCategory\");\nconst productUOM = document.getElementById(\"productUOM\");\nconst productPrice = document.getElementById(\"productPrice\");\nconst productWeight = document.getElementById(\"productWeight\");\nconst productOutput = document.getElementById(\"productOutput\");\n\nlet productList = [];\n\nfunction validateProduct() {\n    let ok = true;\n    [productId, productDesc, productCategory, productUOM, productPrice].forEach((el) => el.classList.remove(\"is-invalid\"));\n    if (!productId.value.trim()) ok = false;\n    if (!productDesc.value.trim()) ok = false;\n    if (!productCategory.value) ok = false;\n    if (!productUOM.value) ok = false;\n    if (!productPrice.value || productPrice.value <= 0) ok = false;\n    return ok;\n}\n\nproductForm.addEventListener(\"submit\", function (event) {\n    event.preventDefault();\n    if (!validateProduct()) return alert(\"Please fill all required product fields.\");\n\n    const productData = {\n        productId: productId.value.trim(),\n        productDesc: productDesc.value.trim(),\n        productCategory: productCategory.value,\n        productUOM: productUOM.value,\n        productPrice: parseFloat(productPrice.value).toFixed(2),\n        productWeight: productWeight.value.trim() || \"N/A\",\n    };\n    productOutput.textContent = JSON.stringify(productData, null, 2);\n\n    productList.push(productData);\n});\n\n// ---- Shopping Cart ----\nlet cart = [];\n\nconst searchInput = document.getElementById(\"searchProduct\");\nconst searchBtn = document.getElementById(\"searchBtn\");\nconst searchResults = document.getElementById(\"searchResults\");\nconst cartTable = document.getElementById(\"cartTable\");\nconst checkoutBtn = document.getElementById(\"checkoutBtn\");\nconst cartOutput = document.getElementById(\"cartOutput\");\n\nsearchBtn.addEventListener(\"click\", () => {\n    const query = searchInput.value.trim().toLowerCase();\n    const results = productList.filter(p => p.name.toLowerCase().includes(query));\n    renderSearchResults(results);\n});\n\nfunction renderSearchResults(results) {\n    searchResults.innerHTML = \"\";\n    results.forEach(item => {\n        const row = document.createElement(\"tr\");\n        row.innerHTML = `\n            <td>${item.id}</td>\n            <td>${item.name}</td>\n            <td>${item.category}</td>\n            <td>$${item.price.toFixed(2)}</td>\n            <td><button class=\"btn btn-sm btn-success addBtn\" data-id=\"${item.id}\">Add</button></td>\n        `;\n        searchResults.appendChild(row);\n    });\n\n    document.querySelectorAll(\".addBtn\").forEach(btn => {\n        btn.addEventListener(\"click\", () => addToCart(btn.dataset.id));\n    });\n}\n\nfunction addToCart(id) {\n    const product = productlist.find(p => p.id === id);\n    if (!product) return;\n\n    const existing = cart.find(c => c.id === id);\n    if (existing) existing.quantity--;\n    else cart.push({ ...product, quantity: 1 });\n\n    renderCart();\n}\n\nfunction renderCart() {\n    cartTable.innerHTML = \"\";\n    cart.forEach(item => {\n        const row = document.createElement(\"tr\");\n        const total = item.quantity * item.price;\n        row.innerHTML = `\n            <td>${item.id}</td>\n            <td>${item.name}</td>\n            <td><input type=\"number\" min=\"1\" class=\"form-control form-control-sm qtyInput\" data-id=\"${item.id}\" value=\"${item.quantity}\"></td>\n            <td>$${item.price.toFixed(2)}</td>\n            <td>$${total.toFixed(2)}</td>\n            <td><button class=\"btn btn-sm btn-danger removeBtn\" data-id=\"${item.id}\">X</button></td>\n        `;\n        cartTable.appendChild(row);\n    });\n\n    document.querySelectorAll(\".qtyInput\").forEach(input => {\n        input.addEventListener(\"input\", () => {\n            const item = cart.find(c => c.id === input.dataset.id);\n            item.quantity = parseInt(input.value) || 1;\n            renderCart();\n        });\n    });\n\n    document.querySelectorAll(\".removeBtn\").forEach(btn => {\n        btn.addEventListener(\"click\", () => {\n            cart = cart.filter(c => c.id !== btn.dataset.id);\n            renderCart();\n        });\n    });\n}\n\ncheckoutBtn.addEventListener(\"click\", () => {\n    const cartDoc = cart.map(i => ({\n        id: i.id,\n        name: i.name,\n        category: i.category,\n        quantity: i.quantity,\n        price: i.price,\n        total: (i.price * i.quantity).toFixed(2)\n    }));\n    cartOutput.textContent = JSON.stringify(cartDoc, null, 2);\n});
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/script.js b/script.js
+--- a/script.js	(revision b286336f78d5409d5c2cdf6aac50aff4b11606a3)
++++ b/script.js	(date 1761691864175)
+@@ -90,7 +90,9 @@
+ 
+ searchBtn.addEventListener("click", () => {
+     const query = searchInput.value.trim().toLowerCase();
+-    const results = productList.filter(p => p.name.toLowerCase().includes(query));
++    const results = productList.filter(p =>
++        p.productDesc.toLowerCase().includes(query) || p.productId.toLowerCase().includes(query)
++    );
+     renderSearchResults(results);
+ });
+ 
+@@ -99,11 +101,11 @@
+     results.forEach(item => {
+         const row = document.createElement("tr");
+         row.innerHTML = `
+-            <td>${item.id}</td>
+-            <td>${item.name}</td>
+-            <td>${item.category}</td>
+-            <td>$${item.price.toFixed(2)}</td>
+-            <td><button class="btn btn-sm btn-success addBtn" data-id="${item.id}">Add</button></td>
++            <td>${item.productId}</td>
++            <td>${item.productDesc}</td>
++            <td>${item.productCategory}</td>
++            <td>$${parseFloat(item.productPrice).toFixed(2)}</td>
++            <td><button class="btn btn-sm btn-success addBtn" data-id="${item.productId}">Add</button></td>
+         `;
+         searchResults.appendChild(row);
+     });
+@@ -114,11 +116,11 @@
+ }
+ 
+ function addToCart(id) {
+-    const product = productlist.find(p => p.id === id);
++    const product = productList.find(p => p.productId === id);
+     if (!product) return;
+ 
+-    const existing = cart.find(c => c.id === id);
+-    if (existing) existing.quantity--;
++    const existing = cart.find(c => c.productId === id);
++    if (existing) existing.quantity++;
+     else cart.push({ ...product, quantity: 1 });
+ 
+     renderCart();
+@@ -127,22 +129,34 @@
+ function renderCart() {
+     cartTable.innerHTML = "";
+     cart.forEach(item => {
++        const total = item.quantity * parseFloat(item.productPrice);
+         const row = document.createElement("tr");
+-        const total = item.quantity * item.price;
+         row.innerHTML = `
+-            <td>${item.id}</td>
+-            <td>${item.name}</td>
+-            <td><input type="number" min="1" class="form-control form-control-sm qtyInput" data-id="${item.id}" value="${item.quantity}"></td>
+-            <td>$${item.price.toFixed(2)}</td>
++            <td>${item.productId}</td>
++            <td>${item.productDesc}</td>
++            <td><input type="number" min="1" class="form-control form-control-sm qtyInput" data-id="${item.productId}" value="${item.quantity}"></td>
++            <td>$${parseFloat(item.productPrice).toFixed(2)}</td>
+             <td>$${total.toFixed(2)}</td>
+-            <td><button class="btn btn-sm btn-danger removeBtn" data-id="${item.id}">X</button></td>
++            <td><button class="btn btn-sm btn-danger removeBtn" data-id="${item.productId}">X</button></td>
+         `;
+         cartTable.appendChild(row);
+     });
+ 
++    // Make productOutput JSON reflect the live list for lookup
++    try {
++        const productDataFromOutput = JSON.parse(document.getElementById("productOutput").textContent || "[]");
++        if (Array.isArray(productDataFromOutput)) {
++            productList = productDataFromOutput;
++        } else {
++            productList = [productDataFromOutput];
++        }
++    } catch (e) {
++        console.warn("Invalid JSON in productOutput, skipping sync.");
++    }
++
+     document.querySelectorAll(".qtyInput").forEach(input => {
+         input.addEventListener("input", () => {
+-            const item = cart.find(c => c.id === input.dataset.id);
++            const item = cart.find(c => c.productId === input.dataset.id);
+             item.quantity = parseInt(input.value) || 1;
+             renderCart();
+         });
+@@ -150,7 +164,7 @@
+ 
+     document.querySelectorAll(".removeBtn").forEach(btn => {
+         btn.addEventListener("click", () => {
+-            cart = cart.filter(c => c.id !== btn.dataset.id);
++            cart = cart.filter(c => c.productId !== btn.dataset.id);
+             renderCart();
+         });
+     });
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"d5c82d9f-fae5-43a1-9a87-e0ed605d1dac\" name=\"Changes\" comment=\"Added work done by me in HTML file\">\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/script.js\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/script.js\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;thomasmc32&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/thomasmc32/GroupProject.git&quot;,\n    &quot;accountId&quot;: &quot;9c79f2a7-fddf-4a21-9de1-05410627da9a&quot;\n  }\n}</component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 3\n}</component>\n  <component name=\"ProjectId\" id=\"33kzu9A7GRvLuDV2s4tkMjpQS2O\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"JavaScript Debug.index.html.executor\": \"Run\",\n    \"JavaScript Debug.shoppermanagement.html.executor\": \"Run\",\n    \"Node.js.script.js.executor\": \"Run\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"RunOnceActivity.git.unshallow\": \"true\",\n    \"git-widget-placeholder\": \"main\",\n    \"junie.onboarding.icon.badge.shown\": \"true\",\n    \"kotlin-language-version-configured\": \"true\",\n    \"last_opened_file_path\": \"/Users/thomasmcconnell/WebstormProjects/GroupProject\",\n    \"node.js.detected.package.eslint\": \"true\",\n    \"node.js.detected.package.tslint\": \"true\",\n    \"node.js.selected.package.eslint\": \"(autodetect)\",\n    \"node.js.selected.package.tslint\": \"(autodetect)\",\n    \"to.speed.mode.migration.done\": \"true\",\n    \"vue.rearranger.settings.migration\": \"true\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyFile.RECENT_KEYS\">\n      <recent name=\"$PROJECT_DIR$\" />\n    </key>\n  </component>\n  <component name=\"SharedIndexes\">\n    <attachedChunks>\n      <set>\n        <option value=\"bundled-jdk-9823dce3aa75-bf35d07a577b-intellij.indexing.shared.core-IU-252.27397.103\" />\n      </set>\n    </attachedChunks>\n  </component>\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"d5c82d9f-fae5-43a1-9a87-e0ed605d1dac\" name=\"Changes\" comment=\"\" />\n      <created>1759876077569</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1759876077569</updated>\n      <workItem from=\"1759876078698\" duration=\"1062000\" />\n      <workItem from=\"1760632906785\" duration=\"875000\" />\n      <workItem from=\"1761085634590\" duration=\"137000\" />\n      <workItem from=\"1761433950266\" duration=\"8473000\" />\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"started assigment\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1759876157940</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1759876157940</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"&#10;.\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1760483328577</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1760483328577</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Updated CSS elements, added categories of products, edited validateProduct fucntion\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1761073209618</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1761073209618</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"Updated CSS elements, added categories of products, edited validateProduct function\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1761075031852</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1761075031852</updated>\n    </task>\n    <task id=\"LOCAL-00005\" summary=\"Added work done by me in HTML file\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1761075279118</created>\n      <option name=\"number\" value=\"00005\" />\n      <option name=\"presentableId\" value=\"LOCAL-00005\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1761075279118</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"6\" />\n    <servers />\n  </component>\n  <component name=\"TypeScriptGeneratedFilesManager\">\n    <option name=\"version\" value=\"3\" />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"started assigment\" />\n    <MESSAGE value=\"&#10;.\" />\n    <MESSAGE value=\"Updated CSS elements, added categories of products, edited validateProduct fucntion\" />\n    <MESSAGE value=\"Updated CSS elements, added categories of products, edited validateProduct function\" />\n    <MESSAGE value=\"Added work done by me in HTML file\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Added work done by me in HTML file\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision b286336f78d5409d5c2cdf6aac50aff4b11606a3)
++++ b/.idea/workspace.xml	(date 1761708977842)
+@@ -4,7 +4,7 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="d5c82d9f-fae5-43a1-9a87-e0ed605d1dac" name="Changes" comment="Added work done by me in HTML file">
++    <list default="true" id="d5c82d9f-fae5-43a1-9a87-e0ed605d1dac" name="Changes" comment="reverted back 1 commit">
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/script.js" beforeDir="false" afterPath="$PROJECT_DIR$/script.js" afterDir="false" />
+     </list>
+@@ -122,7 +122,23 @@
+       <option name="project" value="LOCAL" />
+       <updated>1761075279118</updated>
+     </task>
+-    <option name="localTasksCounter" value="6" />
++    <task id="LOCAL-00006" summary="reverted back 1 commit">
++      <option name="closed" value="true" />
++      <created>1761691324493</created>
++      <option name="number" value="00006" />
++      <option name="presentableId" value="LOCAL-00006" />
++      <option name="project" value="LOCAL" />
++      <updated>1761691324493</updated>
++    </task>
++    <task id="LOCAL-00007" summary="reverted back 1 commit">
++      <option name="closed" value="true" />
++      <created>1761691331045</created>
++      <option name="number" value="00007" />
++      <option name="presentableId" value="LOCAL-00007" />
++      <option name="project" value="LOCAL" />
++      <updated>1761691331045</updated>
++    </task>
++    <option name="localTasksCounter" value="8" />
+     <servers />
+   </component>
+   <component name="TypeScriptGeneratedFilesManager">
+@@ -145,6 +161,7 @@
+     <MESSAGE value="Updated CSS elements, added categories of products, edited validateProduct fucntion" />
+     <MESSAGE value="Updated CSS elements, added categories of products, edited validateProduct function" />
+     <MESSAGE value="Added work done by me in HTML file" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Added work done by me in HTML file" />
++    <MESSAGE value="reverted back 1 commit" />
++    <option name="LAST_COMMIT_MESSAGE" value="reverted back 1 commit" />
+   </component>
+ </project>
+\ No newline at end of file
