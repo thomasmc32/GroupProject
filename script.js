@@ -1,5 +1,8 @@
 // Committed by Algassim Bah
 
+let products = [];
+let cart = [];
+
 // ---- SHOPPER MANAGEMENT ----
 const shopperForm = document.getElementById("shopperForm");
 const email = document.getElementById("email");
@@ -78,9 +81,37 @@ productForm.addEventListener("submit", function (event) {
     productList.push(productData);
 });
 
-// ---- Shopping Cart ----
-let cart = [];
+$("#productForm").on("submit", function (e) {
+    e.preventDefault();
 
+    const product = {
+        id: $("#productId").val(),
+        description: $("#productDesc").val(),
+        category: $("#productCategory").val(),
+        uom: $("#productUOM").val(),
+        price: parseFloat($("#productPrice").val()),
+        weight: $("#productWeight").val() || null
+    };
+
+    products.push(product);
+    $("#productOutput").text(JSON.stringify(products, null, 2));
+    this.reset();
+});
+
+$("#searchBtn").click(function () {
+    const query = $("#searchProduct").val().toLowerCase();
+    const found = products.find(p =>
+        p.description.toLowerCase().includes(query)
+    );
+
+    if (found) {
+        addToCart(found);
+    } else {
+        alert("Product not found!");
+    }
+});
+
+// ---- Shopping Cart ----
 const searchInput = document.getElementById("searchProduct");
 const searchBtn = document.getElementById("searchBtn");
 const searchResults = document.getElementById("searchResults");
@@ -113,15 +144,50 @@ function renderSearchResults(results) {
     });
 }
 
-function addToCart(id) {
-    const product = productlist.find(p => p.id === id);
-    if (!product) return;
+function addToCart(product) {
+    const existing = cart.find(item => item.id === product.id);
 
-    const existing = cart.find(c => c.id === id);
-    if (existing) existing.quantity--;
-    else cart.push({ ...product, quantity: 1 });
+    if (existing) {
+        existing.qty++;
+    } else {
+        cart.push({
+            id: product.id,
+            description: product.description,
+            price: product.price,
+            qty: 1
+        });
+    }
 
-    renderCart();
+    updateCart();
+}
+
+function updateCart() {
+    const tbody = $("#cartTable");
+    tbody.empty();
+
+    cart.forEach((item, index) => {
+        const total = (item.price * item.qty).toFixed(2);
+
+        tbody.append(`
+            <tr>
+                <td>${item.id}</td>
+                <td>${item.description}</td>
+                <td>${item.qty}</td>
+                <td>${item.price.toFixed(2)}</td>
+                <td>${total}</td>
+                <td>
+                    <button class="btn btn-danger btn-sm" onclick="removeItem(${index})">X</button>
+                </td>
+            </tr>
+        `);
+    });
+
+    $("#cartOutput").text(JSON.stringify(cart, null, 2));
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    updateCart();
 }
 
 function renderCart() {
