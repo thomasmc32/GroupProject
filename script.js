@@ -167,3 +167,107 @@ checkoutBtn.addEventListener("click", () => {
     }));
     cartOutput.textContent = JSON.stringify(cartDoc, null, 2);
 });
+$("#searchBtn").off("click").on("click", function () {
+    const query = $("#searchProduct").val().trim().toLowerCase();
+    if (!query) return alert("Enter a product name to search.");
+
+    const found = products.find(p => p.description.toLowerCase().includes(query));
+    if (found) {
+        addToCart(found);
+        alert(`"${found.description}" added to cart.`);
+    } else {
+        alert("Product not found. Make sure it’s added in Product Management first.");
+    }
+});
+
+function addToCart(product) {
+    const existing = cart.find(item => item.id === product.id);
+    if (existing) {
+        existing.qty += 1;
+    } else {
+        cart.push({
+            id: product.id,
+            description: product.description,
+            price: product.price,
+            qty: 1
+        });
+    }
+    updateCart();
+}
+
+function updateCart() {
+    const tbody = $("#cartTable");
+    tbody.empty();
+
+    cart.forEach((item, index) => {
+        const total = (item.price * item.qty).toFixed(2);
+        tbody.append(`
+            <tr>
+                <td>${item.id}</td>
+                <td>${item.description}</td>
+                <td>${item.qty}</td>
+                <td>$${item.price.toFixed(2)}</td>
+                <td>$${total}</td>
+                <td><button class="btn btn-danger btn-sm" onclick="removeItem(${index})">X</button></td>
+            </tr>
+        `);
+    });
+
+    $("#cartOutput").text(JSON.stringify(cart, null, 2));
+}
+
+function removeItem(index) {
+    cart.splice(index, 1);
+    updateCart();
+}
+
+
+$("#checkoutBtn").off("click").on("click", function () {
+    if (cart.length === 0) {
+        alert("Cart is empty. Please add items before checkout.");
+        return;
+    }
+
+    $.ajax({
+        url: "/echo/json/",  // Temporary echo endpoint for testing
+        type: "POST",
+        data: JSON.stringify(cart),
+        contentType: "application/json; charset=utf-8",
+        success: function (response) {
+            console.log("AJAX Success:", response);
+            $("#cartOutput").html(JSON.stringify(response, null, 2));
+            alert("Cart JSON sent successfully!");
+        },
+        error: function () {
+            console.error("AJAX Error");
+            alert("Error sending cart JSON.");
+        }
+    });
+});
+$("#checkoutBtn").off("click").on("click", function () {
+    if (cart.length === 0) {
+        alert("Cart is empty. Please add products before sending.");
+        return;
+    }
+
+    const cartJSON = JSON.stringify(cart, null, 2);
+
+    console.log("Sending this JSON:", cartJSON);
+    $("#cartOutput").html("<b>Sending JSON...</b><br><pre>" + cartJSON + "</pre>");
+
+    $.ajax({
+        url: "https://httpbin.org/post",
+        type: "POST",
+        data: cartJSON,
+        contentType: "application/json; charset=utf-8",
+        success: function (response) {
+            console.log("Response received:", response);
+            $("#cartOutput").html("<b>Response Received:</b><br><pre>" + JSON.stringify(response, null, 2) + "</pre>");
+            alert("AJAX transport successful!");
+        },
+        error: function (xhr, status, error) {
+            console.error("AJAX Error:", status, error);
+            alert("There was an error sending your JSON.");
+        }
+    });
+});
