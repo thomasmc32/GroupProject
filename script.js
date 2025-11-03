@@ -111,7 +111,7 @@ $("#searchBtn").click(function () {
     }
 });
 
-// ---- Shopping Cart ----
+// ---- SHOPPING CART ----
 const searchInput = document.getElementById("searchProduct");
 const searchBtn = document.getElementById("searchBtn");
 const searchResults = document.getElementById("searchResults");
