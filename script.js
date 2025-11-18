@@ -298,7 +298,7 @@ $("#checkoutBtn").off("click").on("click", function () {
     $("#cartOutput").html("<b>Sending JSON to MongoDB...</b><br><pre>" + cartJSON + "</pre>");
 
     $.ajax({
-        url: "http://localhost:3000/submit",
+        url: "http://130.203.136.203:3000/submit",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({
@@ -330,7 +330,7 @@ $("#shopperForm").on("submit", function(e) {
     $("#shopperOutput").text(JSON.stringify(data, null, 2));
 
     $.ajax({
-        url: "http://localhost:3000/submit",
+        url: "http://130.203.136.203:3000/submit",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({
@@ -354,7 +354,7 @@ $("#productForm").on("submit", function(e) {
     $("#productOutput").text(JSON.stringify(data, null, 2));
 
     $.ajax({
-        url: "http://localhost:3000/submit",
+        url: "http://130.203.136.203:3000/submit",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({
