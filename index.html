@@ -237,7 +237,7 @@ $("#shopperForm").on("submit", function(e) {
     $("#shopperOutput").text(JSON.stringify(data, null, 2));
 
     $.ajax({
-        url: "http://localhost:3000/submit",
+        url: "url: \"http://130.203.136.203:3000/submit",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({
@@ -270,7 +270,7 @@ $("#productForm").on("submit", function (e) {
     $("#productOutput").text(JSON.stringify(data, null, 2));
 
     $.ajax({
-        url: "http://localhost:3000/submit",
+        url: url: "http://130.203.136.203:3000/submit",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({
@@ -305,7 +305,7 @@ $("#checkoutBtn").off("click").on("click", function () {
     $("#cartOutput").text(JSON.stringify(cartData, null, 2));
 
     $.ajax({
-        url: "http://localhost:3000/submit",
+        url: url: "http://130.203.136.203:3000/submit",
         type: "POST",
         contentType: "application/json",
         data: JSON.stringify({
@@ -326,7 +326,7 @@ $("#checkoutBtn").off("click").on("click", function () {
 $("#shipping button.btn-primary").on("click", function() {
     if ($scope.showJSON) {
         $.ajax({
-            url: "http://localhost:3000/submit",
+            url: "http://130.203.136.203:3000/submit",
             type: "POST",
             contentType: "application/json",
             data: JSON.stringify({
