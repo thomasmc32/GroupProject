@@ -290,50 +290,76 @@ function removeItem(index) {
 
 $("#checkoutBtn").off("click").on("click", function () {
     if (cart.length === 0) {
-        alert("Cart is empty. Please add items before checkout.");
-        return;
-    }
-
-    $.ajax({
-        url: "/echo/json/",  // Temporary echo endpoint for testing
-        type: "POST",
-        data: JSON.stringify(cart),
-        contentType: "application/json; charset=utf-8",
-        success: function (response) {
-            console.log("AJAX Success:", response);
-            $("#cartOutput").html(JSON.stringify(response, null, 2));
-            alert("Cart JSON sent successfully!");
-        },
-        error: function () {
-            console.error("AJAX Error");
-            alert("Error sending cart JSON.");
-        }
-    });
-});
-$("#checkoutBtn").off("click").on("click", function () {
-    if (cart.length === 0) {
         alert("Cart is empty. Please add products before sending.");
         return;
     }
 
     const cartJSON = JSON.stringify(cart, null, 2);
-
-    console.log("Sending this JSON:", cartJSON);
-    $("#cartOutput").html("<b>Sending JSON...</b><br><pre>" + cartJSON + "</pre>");
+    $("#cartOutput").html("<b>Sending JSON to MongoDB...</b><br><pre>" + cartJSON + "</pre>");
 
     $.ajax({
-        url: "https://httpbin.org/post",
+        url: "http://localhost:3000/submit",
         type: "POST",
-        data: cartJSON,
-        contentType: "application/json; charset=utf-8",
+        contentType: "application/json",
+        data: JSON.stringify({
+            collectionName: "shoppingcart",
+            data: cart
+        }),
         success: function (response) {
             console.log("Response received:", response);
-            $("#cartOutput").html("<b>Response Received:</b><br><pre>" + JSON.stringify(response, null, 2) + "</pre>");
-            alert("AJAX transport successful!");
+            $("#cartOutput").html("<b>MongoDB Insert Success:</b><br><pre>" + JSON.stringify(response, null, 2) + "</pre>");
+            alert("Shopping cart JSON sent to MongoDB!");
         },
         error: function (xhr, status, error) {
             console.error("AJAX Error:", status, error);
-            alert("There was an error sending your JSON.");
+            alert("Failed to send cart JSON to backend.");
         }
+    });
+});
+$("#shopperForm").on("submit", function(e) {
+    e.preventDefault();
+
+    const data = {
+        email: $("#email").val(),
+        name: $("#name").val(),
+        phone: $("#phone").val(),
+        age: $("#age").val(),
+        address: $("#address").val(),
+    };
+
+    $("#shopperOutput").text(JSON.stringify(data, null, 2));
+
+    $.ajax({
+        url: "http://localhost:3000/submit",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+            collectionName: "shopper",
+            data
+        })
+    });
+});
+$("#productForm").on("submit", function(e) {
+    e.preventDefault();
+
+    const data = {
+        productId: $("#productId").val(),
+        productDesc: $("#productDesc").val(),
+        productCategory: $("#productCategory").val(),
+        productUOM: $("#productUOM").val(),
+        productPrice: $("#productPrice").val(),
+        productWeight: $("#productWeight").val() || null
+    };
+
+    $("#productOutput").text(JSON.stringify(data, null, 2));
+
+    $.ajax({
+        url: "http://localhost:3000/submit",
+        type: "POST",
+        contentType: "application/json",
+        data: JSON.stringify({
+            collectionName: "products",
+            data
+        })
     });
 });
