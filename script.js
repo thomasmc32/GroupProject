@@ -64,39 +64,8 @@ function validateProduct() {
     return ok;
 }
 
-productForm.addEventListener("submit", function (event) {
-    event.preventDefault();
-    if (!validateProduct()) return alert("Please fill all required product fields.");
 
-    const productData = {
-        productId: productId.value.trim(),
-        productDesc: productDesc.value.trim(),
-        productCategory: productCategory.value,
-        productUOM: productUOM.value,
-        productPrice: parseFloat(productPrice.value).toFixed(2),
-        productWeight: productWeight.value.trim() || "N/A",
-    };
-    productOutput.textContent = JSON.stringify(productData, null, 2);
-
-    productList.push(productData);
-});
-
-$("#productForm").on("submit", function (e) {
-    e.preventDefault();
-
-    const product = {
-        id: $("#productId").val(),
-        description: $("#productDesc").val(),
-        category: $("#productCategory").val(),
-        uom: $("#productUOM").val(),
-        price: parseFloat($("#productPrice").val()),
-        weight: $("#productWeight").val() || null
-    };
-
-    products.push(product);
-    $("#productOutput").text(JSON.stringify(products, null, 2));
-    this.reset();
-});
+// Replaced productForm submit handler with new implementation below
 
 $("#searchBtn").click(function () {
     const query = $("#searchProduct").val().toLowerCase();
@@ -343,11 +312,11 @@ $("#productForm").on("submit", function(e) {
     e.preventDefault();
 
     const data = {
-        productId: $("#productId").val(),
-        productDesc: $("#productDesc").val(),
+        productId: $("#productId").val().trim(),
+        productDesc: $("#productDesc").val().trim(),
         productCategory: $("#productCategory").val(),
         productUOM: $("#productUOM").val(),
-        productPrice: $("#productPrice").val(),
+        productPrice: parseFloat($("#productPrice").val()),
         productWeight: $("#productWeight").val() || null
     };
 
@@ -360,6 +329,14 @@ $("#productForm").on("submit", function(e) {
         data: JSON.stringify({
             collectionName: "products",
             data
-        })
+        }),
+        success: (response) => {
+            console.log("Product successfully saved:", response);
+            alert("Product successfully inserted into MongoDB!");
+        },
+        error: (xhr, status, err) => {
+            console.error("Error submitting product:", status, err);
+            alert("Error saving product data.");
+        }
     });
 });
