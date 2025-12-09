@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d5c82d9f-fae5-43a1-9a87-e0ed605d1dac" name="Changes" comment="doing proj">
-      <change beforePath="$PROJECT_DIR$/signup.html" beforeDir="false" afterPath="$PROJECT_DIR$/signup.html" afterDir="false" />
+    <list default="true" id="d5c82d9f-fae5-43a1-9a87-e0ed605d1dac" name="Changes" comment="Fixed Signup File">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/returns.html" beforeDir="false" afterPath="$PROJECT_DIR$/returns.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,13 +77,15 @@
       <recent name="$PROJECT_DIR$" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/.idea" />
       <recent name="C:\Users\ishra\WebstormProjects\GroupProject" />
     </key>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
-        <option value="bundled-js-predefined-d6986cc7102b-c7e53b3be11b-JavaScript-WS-253.28294.332" />
+        <option value="bundled-js-predefined-d6986cc7102b-b598e85cdad2-JavaScript-WS-252.25557.126" />
       </set>
     </attachedChunks>
   </component>
@@ -100,6 +104,7 @@
       <workItem from="1761706124977" duration="2504000" />
       <workItem from="1765253913019" duration="1600000" />
       <workItem from="1765258262773" duration="1624000" />
+      <workItem from="1765318826993" duration="1836000" />
     </task>
     <task id="LOCAL-00001" summary="started assigment">
       <option name="closed" value="true" />
@@ -221,7 +226,15 @@
       <option name="project" value="LOCAL" />
       <updated>1763445236835</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="Fixed Signup File">
+      <option name="closed" value="true" />
+      <created>1765317671718</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1765317671718</updated>
+    </task>
+    <option name="localTasksCounter" value="17" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -248,6 +261,7 @@
     <MESSAGE value="fixed shopping cart again" />
     <MESSAGE value="added shipping information" />
     <MESSAGE value="doing proj" />
-    <option name="LAST_COMMIT_MESSAGE" value="doing proj" />
+    <MESSAGE value="Fixed Signup File" />
+    <option name="LAST_COMMIT_MESSAGE" value="Fixed Signup File" />
   </component>
 </project>
